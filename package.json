@@ -8,7 +8,8 @@
     "build": "echo 'Build handled by Vercel'",
     "deploy": "vercel --prod",
     "preview": "vercel",
-    "package-plugin": "node scripts/package-plugin.js"
+    "package-plugin": "node scripts/package-plugin.js",
+    "test": "echo 'Running tests...'"
   },
   "repository": {
     "type": "git",

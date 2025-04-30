@@ -222,6 +222,38 @@ class BookGPT_Admin {
             'bookgpt-settings',
             'bookgpt_advanced_settings'
         );
+
+        // Deployment Settings
+        add_settings_section(
+            'bookgpt_deployment_settings',
+            __('Deployment Settings', 'bookgpt-wp'),
+            array($this, 'deployment_settings_callback'),
+            'bookgpt-settings'
+        );
+
+        add_settings_field(
+            'vercel_token',
+            __('Vercel Token', 'bookgpt-wp'),
+            array($this, 'vercel_token_callback'),
+            'bookgpt-settings',
+            'bookgpt_deployment_settings'
+        );
+
+        add_settings_field(
+            'vercel_project_id',
+            __('Vercel Project ID', 'bookgpt-wp'),
+            array($this, 'vercel_project_id_callback'),
+            'bookgpt-settings',
+            'bookgpt_deployment_settings'
+        );
+
+        add_settings_field(
+            'vercel_org_id',
+            __('Vercel Org ID', 'bookgpt-wp'),
+            array($this, 'vercel_org_id_callback'),
+            'bookgpt-settings',
+            'bookgpt_deployment_settings'
+        );
     }
     
     /**
@@ -381,6 +413,46 @@ class BookGPT_Admin {
             <input type='checkbox' name='bookgpt_options[enable_chat_history]' value='yes' <?php checked($enabled, 'yes'); ?>>
             <?php _e('Remember conversation context within a session', 'bookgpt-wp'); ?>
         </label>
+        <?php
+    }
+
+    /**
+     * Deployment Settings section callback
+     */
+    public function deployment_settings_callback() {
+        echo '<p>' . __('Configure the deployment settings for Vercel.', 'bookgpt-wp') . '</p>';
+    }
+
+    /**
+     * Vercel Token field callback
+     */
+    public function vercel_token_callback() {
+        $options = get_option('bookgpt_options');
+        ?>
+        <input type='password' name='bookgpt_options[vercel_token]' class='regular-text' value='<?php echo esc_attr($options['vercel_token'] ?? ''); ?>'>
+        <p class="description"><?php _e('Your Vercel token for deployment.', 'bookgpt-wp'); ?></p>
+        <?php
+    }
+
+    /**
+     * Vercel Project ID field callback
+     */
+    public function vercel_project_id_callback() {
+        $options = get_option('bookgpt_options');
+        ?>
+        <input type='text' name='bookgpt_options[vercel_project_id]' class='regular-text' value='<?php echo esc_attr($options['vercel_project_id'] ?? ''); ?>'>
+        <p class="description"><?php _e('Your Vercel project ID.', 'bookgpt-wp'); ?></p>
+        <?php
+    }
+
+    /**
+     * Vercel Org ID field callback
+     */
+    public function vercel_org_id_callback() {
+        $options = get_option('bookgpt_options');
+        ?>
+        <input type='text' name='bookgpt_options[vercel_org_id]' class='regular-text' value='<?php echo esc_attr($options['vercel_org_id'] ?? ''); ?>'>
+        <p class="description"><?php _e('Your Vercel organization ID.', 'bookgpt-wp'); ?></p>
         <?php
     }
 

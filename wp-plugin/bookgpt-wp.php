@@ -181,5 +181,14 @@ function bookgpt_create_db_tables() {
 }
 register_activation_hook(__FILE__, 'bookgpt_create_db_tables');
 
+/**
+ * Add missing hooks and actions
+ */
+add_action('init', 'bookgpt_register_shortcodes');
+add_action('wp_enqueue_scripts', 'bookgpt_enqueue_public_scripts');
+add_action('admin_enqueue_scripts', 'bookgpt_enqueue_admin_scripts');
+add_action('admin_menu', 'bookgpt_add_admin_menu');
+add_action('admin_init', 'bookgpt_register_settings');
+
 // Initialize the plugin
 run_bookgpt();

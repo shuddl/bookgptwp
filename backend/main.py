@@ -29,6 +29,18 @@ if not google_books_api_key:
     print("WARNING: GOOGLE_BOOKS_API_KEY environment variable not set.")
     # Consider raising an error in a real app or disabling functionality
 
+# Initialize Webhook Secret
+webhook_secret = os.getenv("WEBHOOK_SECRET")
+if not webhook_secret:
+    print("WARNING: WEBHOOK_SECRET environment variable not set.")
+    # Consider raising an error in a real app or disabling functionality
+
+# Initialize Amazon Associate Tag
+amazon_associate_tag = os.getenv("AMAZON_ASSOCIATE_TAG")
+if not amazon_associate_tag:
+    print("WARNING: AMAZON_ASSOCIATE_TAG environment variable not set.")
+    # Consider raising an error in a real app or disabling functionality
+
 class ChatRequest(BaseModel):
     user_id: str
     message: str
